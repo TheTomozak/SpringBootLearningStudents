@@ -2,6 +2,7 @@ package pl.tomozak.learningAmigoscode.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,5 +27,11 @@ class StudentController {
     @ResponseStatus(value = HttpStatus.OK, reason = "Student added")
     public void registerNewStudent(@RequestBody Student student){
         studentService.addNewStudent(student);
+    }
+
+    @DeleteMapping("{studentId}")
+    @ResponseStatus(value = HttpStatus.OK, reason = "Student deleted")
+    public void deleteStudent(@PathVariable("studentId") Long studentId){
+    studentService.deleteStudent(studentId);
     }
 }
