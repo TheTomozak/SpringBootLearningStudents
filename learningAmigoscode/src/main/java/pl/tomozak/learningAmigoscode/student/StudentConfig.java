@@ -16,14 +16,12 @@ class StudentConfig {
 
         return args -> {
             Student tomek = Student.builder()
-                    .age(22)
                     .name("Tomek")
-                    .dob(LocalDate.of(2000, Month.APRIL, 5))
+                    .dob(LocalDate.of(2000, Month.FEBRUARY, 5))
                     .email("xxx@gmail.com")
                     .build();
 
             Student jan = Student.builder()
-                    .age(52)
                     .name("Jan")
                     .dob(LocalDate.of(2202, Month.APRIL, 10))
                     .email("yyy@gmail.com")
