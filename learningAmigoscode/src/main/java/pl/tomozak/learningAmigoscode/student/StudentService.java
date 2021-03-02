@@ -2,6 +2,7 @@ package pl.tomozak.learningAmigoscode.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,5 +43,28 @@ class StudentService {
         }
 
         studentRepository.deleteById(studentId);
+    }
+
+
+    @Transactional
+    public void updateStudent( Long studentId, String name, String email) {
+
+        Student student = studentRepository.findById(studentId).orElseThrow(() -> new IllegalStateException("Student with id:"+studentId+ " not exists"));
+
+        if(name == null ||name.length() <= 0){
+            throw new IllegalStateException("Name is required");
+        }else {
+            student.setName(name);
+        }
+
+        if(email == null || email.length() <= 0){
+            throw new IllegalStateException("Email is required");
+        }else if (studentRepository.findStudentByEmail(email).isPresent()){
+            throw new IllegalStateException("Email is taken");
+        }
+        else {
+            student.setEmail(email);
+        }
+
     }
 }
