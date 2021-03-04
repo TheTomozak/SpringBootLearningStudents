@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.tomozak.learningAmigoscode.models.Student;
 import pl.tomozak.learningAmigoscode.models.Subject;
 import pl.tomozak.learningAmigoscode.student.StudentRepository;
-import pl.tomozak.learningAmigoscode.subject.exceptions.IdNotExistsException;
-import pl.tomozak.learningAmigoscode.subject.exceptions.SubjectAlreadyExistsException;
+import pl.tomozak.learningAmigoscode.exceptions.subject.IdNotExistsException;
+import pl.tomozak.learningAmigoscode.exceptions.subject.SubjectAlreadyExistsException;
 
 import java.util.List;
 import java.util.Optional;
