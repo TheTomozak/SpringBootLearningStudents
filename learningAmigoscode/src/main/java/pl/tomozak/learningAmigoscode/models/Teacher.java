@@ -1,9 +1,10 @@
 package pl.tomozak.learningAmigoscode.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Teacher {
@@ -14,6 +15,11 @@ public class Teacher {
 
     private String name;
     private String lastName;
+
+
+    @OneToMany(mappedBy = "teacher")
+//    @JsonIgnoreProperties("teacher")
+    private Set<Subject> subjects = new HashSet<>();
 
     public Teacher() {
     }
@@ -45,5 +51,13 @@ public class Teacher {
 
     public void setLastName(String last_name) {
         this.lastName = last_name;
+    }
+
+    public Set<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(Set<Subject> subjects) {
+        this.subjects = subjects;
     }
 }

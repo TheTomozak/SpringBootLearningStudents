@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -14,7 +15,11 @@ public class Subject {
     @Column(nullable = false)
     private Long id;
 
-//    @JsonManagedReference
+    @Column(unique = true, nullable = false)
+    private String name;
+
+
+    //    @JsonManagedReference
     @SuppressWarnings("JpaDataSourceORMInspection")
     @ManyToMany
     @JsonIgnoreProperties("subjects")
@@ -26,8 +31,12 @@ public class Subject {
 
     private Set<Student> enrolledStudents = new HashSet<>();
 
-    @Column(unique = true, nullable = false)
-    private String name;
+    @SuppressWarnings("JpaDataSourceORMInspection")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("subjects")
+    @JoinColumn(name = "teacher_id", referencedColumnName = "id")
+    private Teacher teacher;
+
 
     public Subject() {
     }
@@ -58,5 +67,17 @@ public class Subject {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public void assignTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }

@@ -1,4 +1,4 @@
-package pl.tomozak.learningAmigoscode.exceptions.subject;
+package pl.tomozak.learningAmigoscode.exceptions;
 
 
 
