@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.tomozak.learningAmigoscode.models.Student;
 import pl.tomozak.learningAmigoscode.models.Subject;
 import pl.tomozak.learningAmigoscode.student.StudentRepository;
+import pl.tomozak.learningAmigoscode.subject.exceptions.IdNotExistsException;
 import pl.tomozak.learningAmigoscode.subject.exceptions.SubjectAlreadyExistsException;
 
 import java.util.List;
@@ -39,11 +40,15 @@ class SubjectService {
 
     public Subject enrollStudentToSubject(Long subjectId, Long studentId){
 
-        Subject subject = subjectRepository.getOne(subjectId);
-        Student student= studentRepository.getOne(studentId);
-        subject.getEnrolledStudents().add(student);
+        Optional<Subject> subject = subjectRepository.findById(subjectId);
+        Optional <Student> student= studentRepository.findById(studentId);
 
-        return subjectRepository.save(subject);
+        if(subject.isEmpty() || student.isEmpty()){
+            throw new IdNotExistsException();
+        }
+
+        subject.get().getEnrolledStudents().add(student.get());
+        return subjectRepository.save(subject.get());
 
     }
 
