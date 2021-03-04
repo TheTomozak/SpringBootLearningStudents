@@ -1,5 +1,6 @@
 package pl.tomozak.learningAmigoscode.student;
 import org.junit.jupiter.api.Test;
+import pl.tomozak.learningAmigoscode.models.Student;
 
 import java.time.LocalDate;
 

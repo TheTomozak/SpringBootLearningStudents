@@ -3,6 +3,7 @@ package pl.tomozak.learningAmigoscode.student;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import pl.tomozak.learningAmigoscode.models.Student;
 
 import java.time.LocalDate;
 import java.time.Month;
