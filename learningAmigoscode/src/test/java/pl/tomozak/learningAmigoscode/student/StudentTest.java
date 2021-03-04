@@ -14,6 +14,7 @@ class StudentTest {
 
         //given
         Student student = new Student("Tomek", LocalDate.ofYearDay(1999, 3), "xxx@wp.pl");
+
         //when
         //then
         assertEquals(22, student.getAge());
